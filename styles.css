@@ -1,0 +1,10 @@
+#my-container {
+    display: flex;
+    justify-content: center;
+}
+
+#control-panel {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
