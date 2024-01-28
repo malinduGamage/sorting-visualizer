@@ -8,7 +8,6 @@ function randArray(n) {
     }
 }
 
-
 function create(arrayLen){
 
     let my_container = document.getElementById("my-container")
@@ -31,13 +30,10 @@ function create(arrayLen){
         my_container.appendChild(new_element);
         divList.push(new_element)
     }
-    console.log(divList)
 }
 
-function bubbleSortRec(i=0,j=0,array=arr){
+function bubbleSort(i=0,j=0,array=arr,n=array.length){
     
-    let n=array.length
-    console.log('arraylen '+n)
     if (j>=n-i-1){
         if(j>=2){
             divList[j-1].style.backgroundColor = "blue"
@@ -59,12 +55,35 @@ function bubbleSortRec(i=0,j=0,array=arr){
         if(j>0){
             divList[j-1].style.backgroundColor = "blue"
         }    
-        console.log(j)
         divList[j].style.height = `${array[j]}em`
         divList[j+1].style.height = `${array[j+1]}em`
         divList[j].style.backgroundColor = "red"
         divList[j+1].style.backgroundColor = "red"
-        bubbleSortRec(i,j+1,array)
+        bubbleSort(i,j+1,array,n)
+        
+    },Math.round(800/n))
+    
+}
+
+function insertionSort(i=1, j=0, array=arr, n=arr.length) {
+    if(( j < 0 || array[j] <= array[j+1])){
+        
+        i++
+        j = i-1
+    }
+    if( i >= n ){
+        return
+    }
+    if( array[j]>array[j+1]){
+        [array[j],array[j+1]] = [array[j+1],array[j]]
+    }
+    setTimeout(()=>{
+
+        divList[j].style.height = `${array[j]}em`
+        divList[j+1].style.height = `${array[j+1]}em`
+        divList[j].style.backgroundColor = "green"
+        divList[j+1].style.backgroundColor = "green"
+        insertionSort(i, j-1, array, n)
         
     },Math.round(800/n))
     
@@ -79,4 +98,3 @@ function init(arrayLength = 50) {
     randArray(arrayLength)
     create(arrayLength)
 }
-
