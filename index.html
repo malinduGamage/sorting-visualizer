@@ -9,11 +9,12 @@
 </head>
 
 <body onload="init()">
+    <h1> Sort Visualizer</h1>
     <div id="control-panel">
-        <input type="text" placeholder="enter array len" id="arrayLen">
-        <button onclick="init()">enter</button>
-        <button onclick="bubbleSort()">bubble sort</button>
-        <button onclick="insertionSort()">insertion sort</button>
+        <input oninput="init()" type="range" id="vol" name="vol" min="5" max="100">
+        <button class="button-6" onclick="bubbleSort()">bubble sort</button>
+        <button class="button-6" onclick="insertionSort()">insertion sort</button>
+        <button class="button-6" onclick="quickSort()">quick sort</button>
     </div>
     <div id="my-container">
     </div>

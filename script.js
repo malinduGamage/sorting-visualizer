@@ -1,10 +1,12 @@
 let arr =[]
-let divList = [];
+let divList = []
+let n;
 
-function randArray(n) {
+function randArray(len) {
+    n=len
     arr = []
-    for (let i=0; i<n; i++){
-        arr.push(Math.round(Math.random() * 50))
+    for (let i=0; i<len; i++){
+        arr.push(Math.round(Math.random() * 40))
     }
 }
 
@@ -20,19 +22,14 @@ function create(arrayLen){
 
     for(let i = 0; i < arrayLen; i++){
         new_element = document.createElement('div')
-        new_element.setAttribute("style",`
-            background-color:blue;
-            width:1em;
-            margin:1px;
-            align-self: flex-end;`);
-        new_element.setAttribute("id",`${i}`)
+        new_element.setAttribute("class",`bars`)
         new_element.style.height = `${arr[i]}em`
         my_container.appendChild(new_element);
         divList.push(new_element)
     }
 }
 
-function bubbleSort(i=0,j=0,array=arr,n=array.length){
+function bubbleSort(i=0,j=0,array=arr){
     
     if (j>=n-i-1){
         if(j>=2){
@@ -59,13 +56,13 @@ function bubbleSort(i=0,j=0,array=arr,n=array.length){
         divList[j+1].style.height = `${array[j+1]}em`
         divList[j].style.backgroundColor = "red"
         divList[j+1].style.backgroundColor = "red"
-        bubbleSort(i,j+1,array,n)
+        bubbleSort(i,j+1,array)
         
     },Math.round(800/n))
     
 }
 
-function insertionSort(i=1, j=0, array=arr, n=arr.length) {
+function insertionSort(i=1, j=0, array=arr) {
     if(( j < 0 || array[j] <= array[j+1])){
         
         i++
@@ -83,18 +80,62 @@ function insertionSort(i=1, j=0, array=arr, n=arr.length) {
         divList[j+1].style.height = `${array[j+1]}em`
         divList[j].style.backgroundColor = "green"
         divList[j+1].style.backgroundColor = "green"
-        insertionSort(i, j-1, array, n)
+        insertionSort(i, j-1, array)
         
     },Math.round(800/n))
     
 }
 
-function init(arrayLength = 50) {
-    let inputVal = document.getElementById("arrayLen").value
-    if (inputVal.trim() !== ""){
-        arrayLength = parseInt(inputVal)
+function quickSort(array=arr, start = 0, end = arr.length -1) {
+    if(end<=start){return;}
+    let pivot = array[end];
+    let i = start -1;
+    let temp;
+
+    for(let j = start;j<=end;j++){
+        if(array[j]<pivot){
+            i++;
+            temp=array[i];
+            array[i]=array[j];
+            array[j]=temp;
+
+            divList[j].style.height = `${array[j]}em`
+            divList[i].style.height = `${array[i]}em`
+            divList[j].style.backgroundColor = "green"
+            divList[i].style.backgroundColor = "green"
+            }
     }
 
+    i++;
+    temp=array[i];
+    array[i]=pivot;
+    array[end]=temp;
+
+    divList[end].style.height = `${array[end]}em`
+    divList[i].style.height = `${array[i]}em`
+    divList[end].style.backgroundColor = "green"
+    divList[i].style.backgroundColor = "green"
+
+    setTimeout(()=>{
+
+        quickSort(array,start,i-1);
+        setTimeout(()=>{
+
+        
+            quickSort(array,i+1,end);
+            
+        },Math.round(800/n))
+    
+        
+    },Math.round(800/n))
+
+    
+    
+}
+
+function init(arrayLength) {
+    let inputVal = document.getElementById("vol").value
+    arrayLength = parseInt(inputVal)
     randArray(arrayLength)
     create(arrayLength)
 }
