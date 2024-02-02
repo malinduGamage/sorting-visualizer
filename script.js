@@ -26,7 +26,7 @@ function randArray(len) {
     n=len
     arr = []
     for (let i=0; i<len; i++){
-        arr.push(Math.round(Math.random() * 35))
+        arr.push(Math.round(Math.random() * 34+1))
     }
 }
 
@@ -119,13 +119,13 @@ async function quickSort(array=arr, start = 0, end = arr.length -1) {
         divList[k].style.backgroundColor = "grey"
     }
 
-    await wait(100)
+    await wait(2000/n)
 
     let pivot = array[end];
     let i = start -1;
     let temp;
 
-    await wait(100)
+    await wait(2000/n)
     divList[end].style.backgroundColor = "red"
 
     for(let j = start;j<=end;j++){
@@ -134,14 +134,14 @@ async function quickSort(array=arr, start = 0, end = arr.length -1) {
             temp=array[i];
             array[i]=array[j];
             array[j]=temp;
-            await wait(50)
+            await wait(2000/n)
             divList[j].style.height = `${array[j]}em`
             divList[i].style.height = `${array[i]}em`
             
             }
     }
 
-    await wait(100)
+    await wait(2000/n)
 
     for(let k = start;k<=end;k++){
         divList[k].style.backgroundColor = "green"
@@ -178,7 +178,7 @@ async function selectionSort()
               
         }
         divList[min_idx].style.backgroundColor = "red"
-        await wait(100)
+        await wait(3000/n)
         // Swap the found minimum element
         // with the first element
         if (min_idx!=i){
@@ -187,7 +187,7 @@ async function selectionSort()
             divList[min_idx].style.height = `${arr[min_idx]}em`;
             divList[min_idx].style.backgroundColor = "blue"
             divList[i].style.backgroundColor = "green"
-            await wait(100)
+            await wait(3000/n)
         }
         divList[i].style.backgroundColor = "green"
         
